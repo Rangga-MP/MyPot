@@ -1,0 +1,107 @@
+<!-- skills.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/path/to/favicon.png" type="image/png">
+    <title>MyPot - Skills</title>
+</head>
+<body>
+    <input type="checkbox" id="menu">
+    <header>
+        <label for="menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </label>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="serv.html">Services</a>
+            <a href="skills.html" class="active">Skills</a>
+            <a href="edu.html">Education</a>
+            <a href="exp.html">Experience</a>
+            <a href="cont.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fa-brands fa-html5"></i>
+                <h3>HTML</h3>
+                <p>Building the structure of modern web pages with semantic markup.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-css3-alt"></i>
+                <h3>CSS</h3>
+                <p>Styling and making websites visually appealing and responsive.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-js-square"></i>
+                <h3>JavaScript</h3>
+                <p>Creating dynamic, interactive user interfaces and web applications.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-react"></i>
+                <h3>React</h3>
+                <p>Building powerful single-page applications using a component-based approach.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-node-js"></i>
+                <h3>Node.js</h3>
+                <p>Backend development for scalable web applications using JavaScript.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-python"></i>
+                <h3>Python</h3>
+                <p>Solving problems with versatile programming for web, data, and automation.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-php"></i>
+                <h3>PHP</h3>
+                <p>Developing server-side logic for web applications and databases.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-database"></i>
+                <h3>SQL</h3>
+                <p>Managing databases, queries, and relational data structures.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-cloud"></i>
+                <h3>Cloud Computing</h3>
+                <p>Deploying and managing cloud services for scalable applications.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Ambil elemen header
+const header = document.querySelector('header');
+
+// Fungsi untuk menangani scroll
+function handleScroll() {
+    if (window.scrollY > 0) {
+        header.classList.add('header-scroll'); // Tambahkan kelas saat di-scroll
+    } else {
+        header.classList.remove('header-scroll'); // Hapus kelas saat kembali ke atas
+    }
+}
+
+// Tambahkan event listener untuk scroll
+window.addEventListener('scroll', handleScroll);
+function handleScroll() {
+    if (window.innerWidth > 768) { // Hanya untuk layar lebih besar dari 768px
+        if (window.scrollY > 0) {
+            header.classList.add('header-scroll');
+        } else {
+            header.classList.remove('header-scroll');
+        }
+    }
+}
+    </script>
+</body>
+</html>

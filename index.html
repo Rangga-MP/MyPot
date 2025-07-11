@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/path/to/favicon.png" type="image/png">
+    <title>MyPot - Home</title>
+</head>
+<body>
+    <!-- MOBILE SCREEN -->
+    <input type="checkbox" id="menu">
+    <header>
+        <!-- MOBILE SCREEN -->
+        <label for="menu">
+          <div></div>
+          <div></div>            
+          <div></div>
+        </label>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="serv.html">Services</a>
+            <a href="skills.html">Skills</a>
+            <a href="edu.html">Education</a>
+            <a href="exp.html">Experience</a>
+            <a href="cont.html">Contact</a>
+        </nav>
+    </header>
+    <section class="home">
+        <div class="home-img">
+            <img src="main.png" alt="">
+        </div>
+        <div class="home-content">
+            <h1><span>Hey, I'm</span> Rangga.<span>What's up?</span></h1>
+            <h3 class="typing-text">I'm a <span></span></h3>
+            <p>Siswa SMK dengan keahlian dalam instalasi dan pemeliharaan jaringan, serta dasar pemrograman Html ,Css dan JavaScript. Berpengalaman mendukung tim IT selama praktik kerja industri, terutama dalam konfigurasi jaringan dan pengembangan sebuah Web.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+    </section>
+    <script>
+const textArray = [
+    "Web Developer", 
+    "Frontend Developer", 
+    "Web Designer", 
+    "Data Analyst", 
+    "Script Writer"
+];
+let currentIndex = 0;
+let letterIndex = 0;
+const typingTextElement = document.querySelector(".typing-text span");
+
+function type() {
+    if (letterIndex < textArray[currentIndex].length) {
+        typingTextElement.textContent += textArray[currentIndex].charAt(letterIndex);
+        letterIndex++;
+        setTimeout(type, 150); 
+    } else {
+        setTimeout(erase, 2000); 
+    }
+}
+
+function erase() {
+    if (letterIndex > 0) {
+        typingTextElement.textContent = textArray[currentIndex].substring(0, letterIndex - 1);
+        letterIndex--;
+        setTimeout(erase, 100); 
+    } else {
+        currentIndex = (currentIndex + 1) % textArray.length; 
+        setTimeout(type, 500); 
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(type, 1000);
+});
+
+const header = document.querySelector('header');
+
+function handleScroll() {
+    if (window.scrollY > 0) {
+        header.classList.add('header-scroll'); 
+    } else {
+        header.classList.remove('header-scroll');
+    }
+}
+
+window.addEventListener('scroll', handleScroll);
+function handleScroll() {
+    if (window.innerWidth > 768) { 
+        if (window.scrollY > 0) {
+            header.classList.add('header-scroll');
+        } else {
+            header.classList.remove('header-scroll');
+        }
+    }
+}
+    </script>
+</body>
+</html>
