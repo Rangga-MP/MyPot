@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en"> <!-- Default language set to English -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Porto</title>
+    <title>Portofolio Graphic Desainer (D.I.V)</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,16 +14,18 @@
     <style>
         /*
          * ==============================================
-         * CSS RESET & VARIABEL GLOBAL
+         * CSS RESET & VARIABEL GLOBAL (PALET ASLI)
          * ==============================================
          */
         :root {
+            /* Original Palette */
             --bg-color: #f0f0f0;
             --bg-secondary-color: #ffffff;
             --text-color: #444444;
             --heading-color: #1a1a1a;
             --accent-color: #007aff;
             --accent-color-dark: #0056b3;
+
             --shadow-light: rgba(0, 0, 0, 0.05);
             --shadow-medium: rgba(0, 0, 0, 0.1);
             --font-primary: 'Inter', sans-serif;
@@ -87,25 +90,27 @@
             left: 0;
             pointer-events: none;
             border-radius: 50%;
-            mix-blend-mode: difference;
             transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
         }
 
         .cursor-dot {
             width: 8px;
             height: 8px;
-            background-color: white;
+            background-color:rgb(255, 255, 255);
         }
 
         .cursor-circle {
             width: 40px;
             height: 40px;
-            border: 2px solid rgb(107, 105, 105);
-            transition: width 0.3s ease, height 0.3s ease, transform 0.2s ease-out;
+            border: 2px solid rgb(0, 0, 0);
+            transition: width 0.3s ease, height 0.3s ease, transform 0.2s ease-out, background-color 0.3s ease, border-color 0.3s ease;
         }
 
         body.cursor-hovered .cursor-circle {
             transform: translate(-50%, -50%) scale(1.5);
+            background-color: rgba(255, 255, 255, 0.3);
+            border-color: transparent;
         }
 
         @media (pointer: coarse) {
@@ -163,6 +168,87 @@
             text-decoration: none;
         }
         
+        /*
+         * ==============================================
+         * LANGUAGE SWITCHER
+         * ==============================================
+         */
+        .language-switcher {
+            position: relative;
+        }
+
+        #lang-toggle-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-family: var(--font-primary);
+            font-weight: 500;
+            color: var(--text-color);
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        #lang-toggle-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        #lang-toggle-btn svg {
+            width: 12px;
+            height: 12px;
+            transition: transform var(--transition-fast);
+        }
+
+        .language-switcher.active #lang-toggle-btn svg {
+            transform: rotate(180deg);
+        }
+
+        #lang-options {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background-color: var(--bg-secondary-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px var(--shadow-medium);
+            overflow: hidden;
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+        }
+        
+        .language-switcher.active #lang-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            background: none;
+            border: none;
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            text-align: left;
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: background-color var(--transition-fast);
+        }
+        
+        .lang-option:hover {
+            background-color: var(--bg-color);
+        }
+        
+        .lang-option.selected {
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+
         /*
          * ==============================================
          * NAVIGASI SAMPING (SCROLL STEPS)
@@ -277,6 +363,10 @@
             color: var(--heading-color);
             margin-bottom: 0.5rem;
         }
+        
+        .section-title h2 span {
+            color: var(--heading-color);
+        }
 
         .section-title p {
             color: #666;
@@ -295,6 +385,7 @@
         .filter-btn {
             background: none;
             border: 1px solid #ddd;
+            color: var(--text-color);
             padding: 0.75rem 1.5rem;
             border-radius: 50px;
             font-family: var(--font-primary);
@@ -374,6 +465,11 @@
          * BAGIAN TENTANG SAYA
          * ==============================================
          */
+        #about {
+            background-color: var(--bg-color);
+            background:border-box;
+        }
+         
         #about .container {
             display: flex;
             align-items: center;
@@ -404,57 +500,106 @@
             color: var(--heading-color);
             margin-bottom: 1.5rem;
         }
+
+        .about-content h2 span {
+            color: var(--heading-color);
+        }
         
         .about-content p {
             margin-bottom: 1.5rem;
+            color: var(--text-color);
         }
 
         /*
          * ==============================================
-         * FOOTER / KONTAK
+         * FOOTER / KONTAK (ENHANCED)
          * ==============================================
          */
         #contact {
-            padding: 8rem 0;
+            padding: 10rem 0;
             color: white;
             background-color: #111;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 35%, rgba(0, 122, 255, 0.2), transparent 40%),
+                radial-gradient(circle at 85% 65%, rgba(0, 86, 179, 0.25), transparent 40%);
+            z-index: 1;
+            animation: animate-aurora 15s linear infinite;
+        }
+
+        @keyframes animate-aurora {
+            0% { transform: rotate(0deg) scale(1.5); opacity: 0.5; }
+            50% { transform: rotate(180deg) scale(2.0); opacity: 0.8; }
+            100% { transform: rotate(360deg) scale(1.5); opacity: 0.5; }
         }
 
         .contact-content {
             text-align: center;
             padding: 4rem;
             background-color: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: float-contact 8s ease-in-out infinite;
         }
-        
+
+        @keyframes float-contact {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
         .contact-content h2 {
             font-family: var(--font-heading);
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-size: clamp(3rem, 6vw, 4.5rem);
             margin-bottom: 1rem;
+            color: white;
         }
         
+        .contact-content h2 span {
+             color: var(--bg-secondary-color);
+        }
+
         .contact-content p {
             max-width: 600px;
             margin: 0 auto 2.5rem auto;
             opacity: 0.9;
+            font-size: 1.1rem;
         }
-        
+
         .contact-email {
             font-size: 1.5rem;
             font-weight: 500;
             text-decoration: none;
             color: white;
             display: inline-block;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             position: relative;
+            padding: 0.5rem 1rem;
+            transition: var(--transition-fast);
         }
         
-        .contact-email::after {
+        .contact-email:hover {
+            background: rgba(0, 122, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        .contact-email span::after {
             content: '';
             position: absolute;
             width: 100%;
@@ -467,31 +612,40 @@
             transition: transform 0.4s ease-out;
         }
         
-        .contact-email:hover::after {
+        .contact-email:hover span::after {
             transform: scaleX(1);
             transform-origin: bottom left;
         }
 
+
         .social-icons {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .social-icons a {
             color: white;
             opacity: 0.8;
             transition: var(--transition-fast);
+            will-change: transform;
         }
         
         .social-icons a:hover {
             opacity: 1;
-            transform: scale(1.2) rotate(5deg);
+            transform: scale(1.2);
+            color: var(--accent-color);
+            filter: drop-shadow(0 0 15px var(--accent-color));
         }
 
         .social-icons svg {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
+            transition: var(--transition-fast);
+        }
+
+        .social-icons a:hover svg {
+            transform: rotate(5deg);
         }
 
         /*
@@ -627,36 +781,46 @@
 
     <header id="main-header">
         <div class="container">
-            <a href="#" class="logo">Rangga Mahendra P.</a>
+            <a href="#" class="logo">Budi Setiawan</a>
+            <div class="language-switcher">
+                <button id="lang-toggle-btn">
+                    <span id="current-lang-text">EN</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z"></path></svg>
+                </button>
+                <div id="lang-options">
+                    <button class="lang-option" data-lang="en">English</button>
+                    <button class="lang-option" data-lang="id">Indonesia</button>
+                </div>
+            </div>
         </div>
     </header>
 
     <nav id="side-nav">
-        <a href="#hero" class="nav-dot active" data-section="hero"><span class="tooltip">Beranda</span></a>
-        <a href="#portfolio" class="nav-dot" data-section="portfolio"><span class="tooltip">Karya</span></a>
-        <a href="#about" class="nav-dot" data-section="about"><span class="tooltip">Tentang</span></a>
-        <a href="#contact" class="nav-dot" data-section="contact"><span class="tooltip">Kontak</span></a>
+        <a href="#hero" class="nav-dot active" data-section="hero"><span class="tooltip" data-lang-key="navHome">Beranda</span></a>
+        <a href="#portfolio" class="nav-dot" data-section="portfolio"><span class="tooltip" data-lang-key="navWork">Karya</span></a>
+        <a href="#about" class="nav-dot" data-section="about"><span class="tooltip" data-lang-key="navAbout">Tentang</span></a>
+        <a href="#contact" class="nav-dot" data-section="contact"><span class="tooltip" data-lang-key="navContact">Kontak</span></a>
     </nav>
 
     <main>
         <section id="hero">
             <div class="container">
-                <h1 class="hero-title">Graphic Designer</h1>
-                <p class="hero-subtitle">Saya adalah seorang desainer grafis yang bersemangat dalam mengubah ide menjadi karya visual yang bermakna dan memikat.</p>
+                <h1 class="hero-title" data-lang-key="heroTitle">Graphic Designer</h1>
+                <p class="hero-subtitle" data-lang-key="heroSubtitle">Saya adalah seorang desainer grafis yang bersemangat dalam mengubah ide menjadi karya visual yang bermakna dan memikat.</p>
             </div>
         </section>
 
         <section id="portfolio">
             <div class="container">
                 <div class="section-title">
-                    <h2>Karya Pilihan</h2>
-                    <p>Berikut adalah beberapa proyek yang telah saya kerjakan, mencakup berbagai disiplin ilmu dalam desain grafis.</p>
+                    <h2 data-lang-key="portfolioTitle">Karya <span>Pilihan</span></h2>
+                    <p data-lang-key="portfolioSubtitle">Berikut adalah beberapa proyek yang telah saya kerjakan, mencakup berbagai disiplin ilmu dalam desain grafis.</p>
                 </div>
                 <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">Semua</button>
-                    <button class="filter-btn" data-filter="branding">Branding</button>
-                    <button class="filter-btn" data-filter="ilustrasi">Ilustrasi</button>
-                    <button class="filter-btn" data-filter="uiux">UI/UX</button>
+                    <button class="filter-btn active" data-filter="all" data-lang-key="filterAll">Semua</button>
+                    <button class="filter-btn" data-filter="branding" data-lang-key="filterBranding">Branding</button>
+                    <button class="filter-btn" data-filter="ilustrasi" data-lang-key="filterIllustration">Ilustrasi</button>
+                    <button class="filter-btn" data-filter="uiux" data-lang-key="filterUIUX">UI/UX</button>
                 </div>
                 <div class="portfolio-grid">
                     <!-- Item Portofolio akan diisi oleh JS dari data asli -->
@@ -670,9 +834,9 @@
                     <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=1000&auto=format&fit=crop" alt="Foto profil desainer">
                 </div>
                 <div class="about-content">
-                    <h2>Halo, Saya Rangga.</h2>
-                    <p>Saya telah membantu berbagai merek untuk berkomunikasi secara visual. Saya percaya bahwa desain yang baik adalah perpaduan antara estetika yang kuat dan solusi fungsional yang menjawab kebutuhan klien.</p>
-                    <p>Keahlian saya meliputi identitas merek (branding), desain antarmuka (UI/UX), dan ilustrasi digital. Saya selalu antusias untuk mempelajari hal-hal baru dan berkolaborasi dalam proyek-proyek yang menantang.</p>
+                    <h2 data-lang-key="aboutTitle">Halo, Saya <span>Budi.</span></h2>
+                    <p data-lang-key="aboutPara1">Saya telah membantu berbagai merek untuk berkomunikasi secara visual. Saya percaya bahwa desain yang baik adalah perpaduan antara estetika yang kuat dan solusi fungsional yang menjawab kebutuhan klien.</p>
+                    <p data-lang-key="aboutPara2">Keahlian saya meliputi identitas merek (branding), desain antarmuka (UI/UX), dan ilustrasi digital. Saya selalu antusias untuk mempelajari hal-hal baru dan berkolaborasi dalam proyek-proyek yang menantang.</p>
                 </div>
             </div>
         </section>
@@ -680,17 +844,19 @@
         <section id="contact">
             <div class="container">
                 <div class="contact-content">
-                    <h2>Mari Berkolaborasi</h2>
-                    <p>Punya ide atau proyek yang menarik? Saya akan senang mendengar dari Anda dan melihat bagaimana kita bisa menciptakan sesuatu yang luar biasa bersama.</p>
-                    <a href="mailto:adiguna.p@example.com" class="contact-email">adiguna.p@example.com</a>
+                    <h2 data-lang-key="contactTitle">Mari <span>Berkolaborasi</span></h2>
+                    <p data-lang-key="contactSubtitle">Punya ide atau proyek yang menarik? Saya akan senang mendengar dari Anda dan melihat bagaimana kita bisa menciptakan sesuatu yang luar biasa bersama.</p>
+                    <a href="mailto:budi.s@gmail.com" class="contact-email" id="contact-email-link">
+                        <span data-original-text="budi.s@gmail.com">budi.s@gmail.com</span>
+                    </a>
                     <div class="social-icons">
-                         <a href="#" aria-label="LinkedIn">
+                         <a href="#" aria-label="LinkedIn" class="social-link">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.62 1.62 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path></svg>
                         </a>
-                        <a href="#" aria-label="Instagram">
+                        <a href="#" aria-label="Instagram" class="social-link">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.441c-3.161 0-3.523.011-4.753.068-2.688.123-3.927 1.362-4.05 4.05-.057 1.23-.067 1.59-.067 4.753s.01 3.523.067 4.753c.123 2.688 1.362 3.927 4.05 4.05 1.23.057 1.59.067 4.753.067s3.523-.01 4.753-.067c2.688-.123 3.927-1.362 4.05-4.05.057-1.23.067-1.59.067-4.753s-.01-3.523-.067-4.753c-.123-2.688-1.362-3.927-4.05-4.05C15.523 3.614 15.161 3.604 12 3.604zm0 4.865a3.532 3.532 0 100 7.064 3.532 3.532 0 000-7.064zm0 5.622a2.09 2.09 0 110-4.18 2.09 2.09 0 010 4.18zm4.965-6.796a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"></path></svg>
                         </a>
-                        <a href="#" aria-label="Dribbble">
+                        <a href="#" aria-label="Dribbble" class="social-link">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.85 0 3.58-.51 5.07-1.38-.42-.35-.8-.75-1.15-1.18-.35-.42-.66-.88-.93-1.37-.53-.97-.93-2.03-.93-3.14 0-1.4.53-2.68 1.4-3.73.88-1.05 2.08-1.73 3.48-1.88.1-.01.2-.02.3-.02.43 0 .85.06 1.26.18.2.06.39.13.58.21.52.22.98.5 1.38.84.18.15.35.3.51.47.16.17.3.34.44.51.41.51.74 1.08.98 1.7.24.62.37 1.29.37 2 0 .8-.15 1.58-.45 2.3-.3.72-.72 1.39-1.23 1.98-.58.66-1.25 1.23-2 1.7l-.1.06c-1.4.81-3.03 1.29-4.77 1.29-4.41 0-8-3.59-8-8s3.59-8 8-8c.18 0 .36.01.53.02C16.97 4.47 19.5 7.42 19.5 11c0 .34-.04.68-.1.99-.18.99-.58 1.89-1.15 2.65-.57.76-1.3 1.38-2.15 1.85-.85.47-1.81.71-2.85.71-1.73 0-3.28-.68-4.42-1.82A6.27 6.27 0 016.5 11c0-1.41.46-2.7 1.25-3.75.79-1.05 1.88-1.75 3.13-1.98.5-.09 1.01-.13 1.52-.13.82 0 1.6.15 2.31.44.71.29 1.35.72 1.88 1.25.53.53.94 1.16 1.22 1.85.28.69.43 1.43.43 2.21 0 .7-.12 1.36-.35 1.98-.23.62-.56 1.19-.98 1.68-.42.49-.9.9-1.42 1.23-.52.33-1.08.58-1.67.75-.59.17-1.2.25-1.83.25-1.3 0-2.48-.4-3.47-1.11A4.2 4.2 0 018.5 11c0-2.34 1.91-4.25 4.25-4.25.34 0 .67.04 1 .12.92.21 1.73.69 2.33 1.37.6.68.97 1.55.97 2.51 0 .84-.23 1.63-.66 2.31-.43.68-1 1.24-1.67 1.65-.67.41-1.42.62-2.22.62-.83 0-1.58-.23-2.22-.69-.64-.46-1.12-1.08-1.38-1.82-.1-.28-.15-.57-.15-.88 0-.96.38-1.83 1.03-2.48.65-.65 1.52-1.03 2.48-1.03.22 0 .43.02.65.06.22.04.43.1.64.18.62.23 1.16.63 1.58 1.16.42.53.65 1.16.65 1.84 0 .3-.04.59-.11.88-.07.29-.18.56-.31.83-.27.55-.63 1.02-1.06 1.38-.43.36-.93.63-1.47.79-.54.16-1.1.24-1.67.24z"></path></svg>
                         </a>
                     </div>
@@ -722,16 +888,89 @@
     document.addEventListener('DOMContentLoaded', () => {
 
         // ==============================================
-        // DATA PORTOFOLIO
+        // DATA BAHASA & TERJEMAHAN
         // ==============================================
+        const translations = {
+            en: {
+                navHome: "Home",
+                navWork: "Work",
+                navAbout: "About",
+                navContact: "Contact",
+                heroTitle: "Graphic Designer",
+                heroSubtitle: "I am a passionate graphic designer, transforming ideas into meaningful and captivating visual works.",
+                portfolioTitle: "Selected <span>Work</span>",
+                portfolioSubtitle: "Here are some of the projects I have worked on, covering various disciplines in graphic design.",
+                filterAll: "All",
+                filterBranding: "Branding",
+                filterIllustration: "Illustration",
+                filterUIUX: "UI/UX",
+                aboutTitle: "Hello, I'm <span>Budi.</span>",
+                aboutPara1: "I have helped various brands to communicate visually. I believe that good design is a blend of strong aesthetics and functional solutions that meet client needs.",
+                aboutPara2: "My expertise includes brand identity (branding), user interface design (UI/UX), and digital illustration. I am always enthusiastic about learning new things and collaborating on challenging projects.",
+                contactTitle: "Let's <span>Collaborate</span>",
+                contactSubtitle: "Have an interesting idea or project? I would love to hear from you and see how we can create something amazing together.",
+            },
+            id: {
+                navHome: "Beranda",
+                navWork: "Karya",
+                navAbout: "Tentang",
+                navContact: "Kontak",
+                heroTitle: "Graphic Designer",
+                heroSubtitle: "Saya adalah seorang desainer grafis yang bersemangat dalam mengubah ide menjadi karya visual yang bermakna dan memikat.",
+                portfolioTitle: "Karya <span>Pilihan</span>",
+                portfolioSubtitle: "Berikut adalah beberapa proyek yang telah saya kerjakan, mencakup berbagai disiplin ilmu dalam desain grafis.",
+                filterAll: "Semua",
+                filterBranding: "Branding",
+                filterIllustration: "Ilustrasi",
+                filterUIUX: "UI/UX",
+                aboutTitle: "Halo, Saya <span>Budi.</span>",
+                aboutPara1: "Saya telah membantu berbagai merek untuk berkomunikasi secara visual. Saya percaya bahwa desain yang baik adalah perpaduan antara estetika yang kuat dan solusi fungsional yang menjawab kebutuhan klien.",
+                aboutPara2: "Keahlian saya meliputi identitas merek (branding), desain antarmuka (UI/UX), dan ilustrasi digital. Saya selalu antusias untuk mempelajari hal-hal baru dan berkolaborasi dalam proyek-proyek yang menantang.",
+                contactTitle: "Mari <span>Berkolaborasi</span>",
+                contactSubtitle: "Punya ide atau proyek yang menarik? Saya akan senang mendengar dari Anda dan melihat bagaimana kita bisa menciptakan sesuatu yang luar biasa bersama.",
+            }
+        };
+
         const portfolioData = [
-            { category: 'ilustrasi', src: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=800&auto=format&fit=crop', title: 'Flora Abstrak', description: 'Sebuah eksplorasi bentuk dan warna bunga yang terinspirasi dari lukisan klasik, diinterpretasikan kembali dalam gaya digital modern.' },
-            { category: 'branding', src: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop', title: 'Seni Kuliner', description: 'Pengembangan identitas visual untuk sebuah restoran premium. Fokus pada fotografi makanan yang menggugah selera dan tipografi yang elegan.' },
-            { category: 'uiux', src: 'https://images.unsplash.com/photo-1512295767273-ac109ac3acfa?q=80&w=800&auto=format&fit=crop', title: 'Aplikasi Produktivitas', description: 'Desain antarmuka untuk aplikasi mobile produktivitas. Dirancang untuk pengalaman pengguna yang intuitif dengan estetika minimalis.' },
-            { category: 'branding', src: './Shampoo-1.png', title: 'Branding Media Digital', description: 'Rebranding untuk sebuah media digital, menggunakan warna-warna cerah dan bentuk geometris untuk menarik audiens muda.' },
-            { category: 'ilustrasi', src: 'https://images.unsplash.com/photo-1509343256512-d77a5cb3791b?q=80&w=800&auto=format&fit=crop', title: 'Tipografi Neon', description: 'Karya tipografi eksperimental yang bermain dengan cahaya neon dan gaya retro-futuristik.' },
-            { category: 'uiux', src: './Shampoo-2.png', title: 'Landing Page Startup', description: 'Desain landing page untuk sebuah startup teknologi, dengan fokus pada konversi dan penyampaian informasi yang jelas melalui visual.' }
+            { 
+                category: 'ilustrasi', 
+                src: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=800&auto=format&fit=crop', 
+                title: { en: 'Abstract Flora', id: 'Flora Abstrak' },
+                description: { en: 'An exploration of floral shapes and colors inspired by classical paintings, reinterpreted in a modern digital style.', id: 'Sebuah eksplorasi bentuk dan warna bunga yang terinspirasi dari lukisan klasik, diinterpretasikan kembali dalam gaya digital modern.' }
+            },
+            { 
+                category: 'branding', 
+                src: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop', 
+                title: { en: 'Culinary Arts', id: 'Seni Kuliner' },
+                description: { en: 'Visual identity development for a premium restaurant. Focus on mouth-watering food photography and elegant typography.', id: 'Pengembangan identitas visual untuk sebuah restoran premium. Fokus pada fotografi makanan yang menggugah selera dan tipografi yang elegan.' }
+            },
+            { 
+                category: 'uiux', 
+                src: 'https://images.unsplash.com/photo-1512295767273-ac109ac3acfa?q=80&w=800&auto=format&fit=crop', 
+                title: { en: 'Productivity App', id: 'Aplikasi Produktivitas' },
+                description: { en: 'User interface design for a mobile productivity application. Designed for an intuitive user experience with a minimalist aesthetic.', id: 'Desain antarmuka untuk aplikasi mobile produktivitas. Dirancang untuk pengalaman pengguna yang intuitif dengan estetika minimalis.' }
+            },
+            { 
+                category: 'branding', 
+                src: './Shampoo-1.png', 
+                title: { en: 'Digital Media Branding', id: 'Branding Media Digital' },
+                description: { en: 'Rebranding for a digital media outlet, using bright colors and geometric shapes to attract a young audience.', id: 'Rebranding untuk sebuah media digital, menggunakan warna-warna cerah dan bentuk geometris untuk menarik audiens muda.' }
+            },
+            { 
+                category: 'ilustrasi', 
+                src: 'https://images.unsplash.com/photo-1509343256512-d77a5cb3791b?q=80&w=800&auto=format&fit=crop', 
+                title: { en: 'Neon Typography', id: 'Tipografi Neon' },
+                description: { en: 'Experimental typography work playing with neon lights and a retro-futuristic style.', id: 'Karya tipografi eksperimental yang bermain dengan cahaya neon dan gaya retro-futuristik.' }
+            },
+            { 
+                category: 'uiux', 
+                src: './Shampoo-2.png', 
+                title: { en: 'Startup Landing Page', id: 'Landing Page Startup' },
+                description: { en: 'Landing page design for a tech startup, focusing on conversion and clear information delivery through visuals.', id: 'Desain landing page untuk sebuah startup teknologi, dengan fokus pada konversi dan penyampaian informasi yang jelas melalui visual.' }
+            }
         ];
+
+        let currentLang = 'en'; // Default language
 
         // ==============================================
         // DEKLARASI VARIABEL & ELEMEN DOM
@@ -743,6 +982,43 @@
         const lightboxDesc = document.getElementById('lightbox-description');
         const lightboxClose = document.getElementById('lightbox-close');
         const lightboxContainer = document.querySelector('.lightbox-container');
+        const langToggleBtn = document.getElementById('lang-toggle-btn');
+        const langOptions = document.getElementById('lang-options');
+        const currentLangText = document.getElementById('current-lang-text');
+
+        // ==============================================
+        // FUNGSI PENGGANTIAN BAHASA
+        // ==============================================
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            
+            // Translate all elements with data-lang-key
+            document.querySelectorAll('[data-lang-key]').forEach(el => {
+                const key = el.dataset.langKey;
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            
+            // Update language switcher button text
+            currentLangText.textContent = lang.toUpperCase();
+
+            // Update selected class on options
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.classList.toggle('selected', btn.dataset.lang === lang);
+            });
+            
+            // Re-render portfolio for new language
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            const filteredData = activeFilter === 'all' 
+                ? portfolioData 
+                : portfolioData.filter(item => item.category === activeFilter);
+            renderPortfolio(filteredData);
+            
+            // Close dropdown
+            langToggleBtn.parentElement.classList.remove('active');
+        }
 
         // ==============================================
         // GLOBAL MOUSE POSITION & KURSOR KUSTOM
@@ -762,10 +1038,7 @@
             let circleY = 0;
 
             function animateCursor() {
-                // Dot mengikuti mouse secara langsung
                 cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-
-                // Circle mengikuti dengan sedikit delay (smoothing/lerp)
                 const dx = mouseX - circleX;
                 const dy = mouseY - circleY;
                 circleX += dx * 0.2;
@@ -781,38 +1054,38 @@
 
             function updateHoverableElements() {
                 document.querySelectorAll('a, button, .grid-item, .filter-btn, .logo, #lightbox-close, .nav-dot').forEach(el => {
-                    el.removeEventListener('mouseenter', addHoverClass); // Mencegah listener duplikat
+                    el.removeEventListener('mouseenter', addHoverClass);
                     el.removeEventListener('mouseleave', removeHoverClass);
                     el.addEventListener('mouseenter', addHoverClass);
                     el.addEventListener('mouseleave', removeHoverClass);
                 });
             }
-            window.updateHoverableElements = updateHoverableElements; // Jadikan global agar bisa dipanggil dari fungsi lain
+            window.updateHoverableElements = updateHoverableElements;
         }
 
         // ==============================================
         // DEFINISI FUNGSI
         // ==============================================
 
-        /**
-         * Menambahkan event listener ke setiap item grid untuk membuka lightbox.
-         */
         function addGridItemListeners() {
             if (!lightbox) return;
-            document.querySelectorAll('.grid-item').forEach(item => {
+            document.querySelectorAll('.grid-item').forEach((item, index) => {
+                // Find the original data object corresponding to this grid item
+                const itemData = portfolioData.find(d => d.title[currentLang] === item.querySelector('h3').textContent);
+                if (!itemData) return;
+
                 item.addEventListener('click', () => {
-                    lightboxImg.src = item.dataset.src;
-                    lightboxTitle.textContent = item.querySelector('h3').textContent;
-                    lightboxDesc.textContent = item.dataset.description;
+                    lightboxImg.src = itemData.src;
+                    // Set lightbox text based on current language
+                    lightboxTitle.textContent = itemData.title[currentLang];
+                    lightboxDesc.textContent = itemData.description[currentLang];
+                    
                     lightbox.classList.add('show');
                     gsap.fromTo(lightboxContainer, {scale: 0.9, opacity: 0}, {scale: 1, opacity: 1, duration: 0.5, ease: 'power3.out'});
                 });
             });
         }
 
-        /**
-         * Menambahkan efek 3D tilt pada item portofolio.
-         */
         function addTiltEffect() {
             const gridItems = document.querySelectorAll('.grid-item');
             gridItems.forEach(item => {
@@ -822,15 +1095,15 @@
                     const y = e.clientY - rect.top;
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
-                    const rotateX = ((y - centerY) / centerY) * -10; // max 10 derajat
-                    const rotateY = ((x - centerX) / centerX) * 10; // max 10 derajat
+                    const rotateX = ((y - centerY) / centerY) * -8;
+                    const rotateY = ((x - centerX) / centerX) * 8;
 
                     gsap.to(item, {
                         duration: 0.5,
                         transformPerspective: 1000,
                         rotationX: rotateX,
                         rotationY: rotateY,
-                        scale: 1.05,
+                        scale: 1.03,
                         ease: 'power2.out'
                     });
                 });
@@ -847,24 +1120,18 @@
             });
         }
 
-        /**
-         * Merender item portofolio ke dalam grid.
-         * @param {Array} items - Array objek data portofolio.
-         */
         function renderPortfolio(items) {
             portfolioGrid.innerHTML = '';
             items.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'grid-item';
                 div.dataset.category = item.category;
-                div.dataset.src = item.src;
-                div.dataset.description = item.description;
                 
                 div.innerHTML = `
-                    <img src="${item.src}" alt="${item.title}" loading="lazy">
+                    <img src="${item.src}" alt="${item.title[currentLang]}" loading="lazy">
                     <div class="item-overlay">
-                        <h3>${item.title}</h3>
-                        <span>${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
+                        <h3>${item.title[currentLang]}</h3>
+                        <span data-lang-key="filter${item.category.charAt(0).toUpperCase() + item.category.slice(1)}">${translations[currentLang]['filter' + item.category.charAt(0).toUpperCase() + item.category.slice(1)]}</span>
                     </div>
                 `;
                 portfolioGrid.appendChild(div);
@@ -879,8 +1146,8 @@
         // ==============================================
         // INISIALISASI & EKSEKUSI AWAL
         // ==============================================
+        setLanguage('en'); // Set default language to English on load
 
-        renderPortfolio(portfolioData);
         if (window.updateHoverableElements) {
             window.updateHoverableElements();
         }
@@ -914,26 +1181,26 @@
         const posArray = new Float32Array(particlesCount * 3);
 
         for (let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 5;
+            posArray[i] = (Math.random() - 0.5) * 7;
         }
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
         const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.005,
+            size: 0.008,
             color: 0x888888
         });
         const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particlesMesh);
 
-        camera.position.z = 2;
+        camera.position.z = 2.5;
 
         const clock = new THREE.Clock();
         function animate3D() {
             const elapsedTime = clock.getElapsedTime();
-            particlesMesh.rotation.y = -0.1 * elapsedTime;
+            particlesMesh.rotation.y = -0.05 * elapsedTime;
             if (mouseX > 0) {
-                particlesMesh.rotation.x = -mouseY * (elapsedTime * 0.00008);
-                particlesMesh.rotation.y += mouseX * (elapsedTime * 0.00008);
+                particlesMesh.rotation.x = -mouseY * (elapsedTime * 0.00004);
+                particlesMesh.rotation.y += mouseX * (elapsedTime * 0.00004);
             }
             renderer.render(scene, camera);
             requestAnimationFrame(animate3D);
@@ -1045,6 +1312,117 @@
                 }
             });
         });
+        
+        // Language switcher logic
+        langToggleBtn.addEventListener('click', () => {
+            langToggleBtn.parentElement.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('.lang-option').forEach(button => {
+            button.addEventListener('click', (e) => {
+                setLanguage(e.target.dataset.lang);
+            });
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', (e) => {
+            if (!langToggleBtn.parentElement.contains(e.target)) {
+                langToggleBtn.parentElement.classList.remove('active');
+            }
+        });
+        
+        // ==============================================
+        // INTERAKSI FOOTER YANG DISEMPURNAKAN
+        // ==============================================
+        function initializeEmailShuffle() {
+            const emailLink = document.getElementById('contact-email-link');
+            if (!emailLink) return;
+
+            const emailSpan = emailLink.querySelector('span');
+            const originalText = emailSpan.dataset.originalText;
+            const chars = '!<>-_\\/[]{}—=+*^?#';
+            let intervalId = null;
+
+            emailLink.addEventListener('mouseenter', () => {
+                let iteration = 0;
+                clearInterval(intervalId);
+
+                intervalId = setInterval(() => {
+                    emailSpan.innerText = originalText
+                        .split('')
+                        .map((letter, index) => {
+                            if (index < iteration) {
+                                return originalText[index];
+                            }
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        })
+                        .join('');
+
+                    if (iteration >= originalText.length) {
+                        clearInterval(intervalId);
+                    }
+
+                    iteration += 1 / 3;
+                }, 30);
+            });
+            
+            emailLink.addEventListener('mouseleave', () => {
+                clearInterval(intervalId);
+                emailSpan.innerText = originalText;
+            });
+        }
+
+        function initializeMagneticIcons() {
+            const socialLinks = document.querySelectorAll('.social-icons a.social-link');
+            if (socialLinks.length === 0 || window.matchMedia("(pointer: coarse)").matches) return;
+
+            socialLinks.forEach(link => {
+                const icon = link.querySelector('svg');
+                const activationRadius = 80;
+
+                link.addEventListener('mousemove', (e) => {
+                    const rect = link.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    
+                    const distance = Math.sqrt(Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2));
+
+                    if (distance < activationRadius) {
+                        const moveX = (e.clientX - centerX) * 0.3;
+                        const moveY = (e.clientY - centerY) * 0.3;
+
+                        gsap.to(icon, {
+                            x: moveX,
+                            y: moveY,
+                            scale: 1.3,
+                            duration: 0.3,
+                            ease: 'power2.out'
+                        });
+                    } else {
+                         gsap.to(icon, {
+                            x: 0,
+                            y: 0,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: 'elastic.out(1, 0.3)'
+                        });
+                    }
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    gsap.to(icon, {
+                        x: 0,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.5,
+                        ease: 'elastic.out(1, 0.3)'
+                    });
+                });
+            });
+        }
+
+        initializeEmailShuffle();
+        initializeMagneticIcons();
     });
     </script>
 </body>
